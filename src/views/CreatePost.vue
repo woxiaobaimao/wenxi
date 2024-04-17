@@ -1,6 +1,5 @@
 <template>
   <div class="create-post-page">
-    <h4>{{ isEditMode ? '编辑文章' : '新建文章' }}</h4>
     <uploader
       action="/upload"
       :beforeUpload="uploadCheck"
@@ -110,7 +109,7 @@ const onFormSubmit = (result: boolean) => {
   checkEditor()
   if (result && editorStatus.isValid) {
     const { _id } = store.state.user
-    const column = route.query.column
+    const column = route.query.column || 10001
     if (column) {
       const newPost: PostProps = {
         title: titleVal.value,

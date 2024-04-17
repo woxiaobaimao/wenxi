@@ -22,23 +22,33 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useStore } from 'vuex'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import GlobalHeader from './components/GlobalHeader.vue'
 import Loader from './components/Loader.vue'
 import { GlobalDataProps } from './store'
+import createMessage from './components/createMessage'
 
 const store = useStore<GlobalDataProps>()
 const currentUser = computed(() => store.state.user)
 const isLoading = computed(() => store.state.loading)
+const error = computed(() => store.state.error)
+
+watch(
+  () => error.value.status,
+  () => {
+    const { status, message } = error.value
+    if (status && message) {
+      createMessage(message, 'error', 2000)
+    }
+  }
+)
 </script>
 
 <style>
 .container-wrapper {
   color: #6c757d;
   background-color: #f2f3f5;
-}
-.container {
 }
 </style>

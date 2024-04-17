@@ -20,8 +20,8 @@ axios.interceptors.response.use(
     return config
   },
   (e) => {
-    const { error } = e.response.data
-    store.commit('setError', { status: true, message: error })
+    const { message } = e.response.data
+    store.commit('setError', { status: true, message })
     store.commit('setLoading', false)
     return Promise.reject(e.response.data)
   }

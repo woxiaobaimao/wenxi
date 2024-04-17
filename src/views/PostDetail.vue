@@ -8,14 +8,14 @@
     >
       <p>确定要删除这篇文章吗？</p>
     </modal>
-    <article class="w-75 m3-5 pb-3 card mb-3 shadow-sm" v-if="currentPost">
+    <article class="container w-75 pb-3 card mt-3 shadow-sm" v-if="currentPost">
       <img :src="currentImageUrl" alt="currentPost.title" class="rounded-lg img-fluid my-4" v-if="currentImageUrl" />
       <h2 class="mb-4">{{ currentPost.title }}</h2>
-      <div class="user-profile-component border-top border-bottom py-3 mb-5 align-items-center row g-0">
+      <div class="user-profile-component py-3 mb-5 align-items-center row g-0">
         <div class="col">
           <user-profile :user="currentPost.author" v-if="typeof currentPost.author === 'object'"></user-profile>
         </div>
-        <span class="text-muted col text-right font-italic">发表于：{{ currentPost.createdAt }}</span>
+        <span class="text-muted col text-right font-italic">{{ currentPost.createdAt }}</span>
       </div>
       <div v-html="currentHTML"></div>
       <div v-if="showEditArea" class="btn-group mt-5">
