@@ -98,7 +98,10 @@ const store = createStore<GlobalDataProps>({
     fetchPosts(state, { data: rawData, extraData: columnId }) {
       state.posts.data = { ...state.posts.data, ...arrToObj(rawData) }
       state.posts.loadedColumns.push(columnId)
-      console.log(state.posts)
+    },
+    fetchPostsAndReplace(state, { data: rawData, extraData: columnId }) {
+      state.posts.data = { ...arrToObj(rawData) }
+      state.posts.loadedColumns = [columnId]
     },
     fetchPost(state, rawData) {
       state.posts.data[rawData._id] = rawData
@@ -146,6 +149,11 @@ const store = createStore<GlobalDataProps>({
     fetchPosts({ state, commit }, cid) {
       if (!state.posts.loadedColumns.includes(cid)) {
         return asyncAndCommit(`/topics/${cid}/posts`, 'fetchPosts', commit, { method: 'get' }, cid)
+      }
+    },
+    fetchPostsAndReplace({ state, commit }, cid) {
+      if (!state.posts.loadedColumns.includes(cid)) {
+        return asyncAndCommit(`/topics/${cid}/posts`, 'fetchPostsAndReplace', commit, { method: 'get' }, cid)
       }
     },
     fetchPost({ state, commit }, id) {

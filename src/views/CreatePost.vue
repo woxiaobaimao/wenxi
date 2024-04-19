@@ -18,7 +18,7 @@
       </template>
       <template #uploaded="dataProps">
         <div class="uploaded-area">
-          <img :src="dataProps.uploadedData && dataProps.uploadedData.data" />
+          <img :src="dataProps.uploadedData && dataProps.uploadedData.data.url" />
           <h3>点击重新上传</h3>
         </div>
       </template>
@@ -100,7 +100,7 @@ onMounted(() => {
 })
 const handleFileUploaded = (rawData: ResponseType<ImageProps>) => {
   if (rawData.data) {
-    imageId = rawData.data
+    imageId = rawData.data.url
   }
 }
 const onFormSubmit = (result: boolean) => {
@@ -109,7 +109,7 @@ const onFormSubmit = (result: boolean) => {
   checkEditor()
   if (result && editorStatus.isValid) {
     const { _id } = store.state.user
-    const column = route.query.column || 10001
+    const column = route.query.column || '6620c9ed8708337110329559'
     if (column) {
       const newPost: PostProps = {
         title: titleVal.value,

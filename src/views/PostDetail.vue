@@ -1,5 +1,5 @@
 <template>
-  <div class="post-detail-page">
+  <div class="post-detail-page d-flex">
     <modal
       title="删除文章"
       :visible="modalIsVisible"
@@ -25,6 +25,30 @@
         <button type="button" class="btn btn-danger" @click.prevent="modalIsVisible = true">删除</button>
       </div>
     </article>
+    <div>
+      <div class="card mb-3 shadow-sm">
+        <div class="p-2">作者</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="btn">查看更多</div>
+      </div>
+      <div class="card mb-3 shadow-sm">
+        <div class="p-2">相关推荐</div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="btn">查看更多</div>
+      </div>
+    </div>
   </div>
 </template>
 

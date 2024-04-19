@@ -9,30 +9,42 @@
       <router-link class="navbar-brand fs-6" to="/">前端</router-link>
       <router-link class="navbar-brand fs-6" to="/">后端</router-link>
     </div>
-    <ul v-if="!user.isLogin" class="list-inline mb-0">
-      <li class="list-inline-item" v-if="!isLoginPage">
-        <router-link to="/login" class="btn my-2">登录</router-link>
-      </li>
-      <li class="list-inline-item" v-else>
-        <router-link to="/signup" class="btn my-2">注册</router-link>
-      </li>
-    </ul>
-    <ul v-else class="list-inline mb-0">
-      <li class="list-inline-item">
-        <dropdown :title="`你好 ${user.nickName}`">
-          <dropdown-item
-            ><router-link :to="{ path: '/create', query: { column: route.params.id } }" class="dropdown-item"
-              >新建文章</router-link
-            ></dropdown-item
-          >
-          <dropdown-item
-            ><router-link :to="`/column/${user.column}`" class="dropdown-item">我的专栏</router-link></dropdown-item
-          >
-          <dropdown-item><a href="#" @click="edit" class="dropdown-item">编辑资料</a></dropdown-item>
-          <dropdown-item><a href="#" @click="logout" class="dropdown-item">退出登录</a></dropdown-item>
-        </dropdown>
-      </li>
-    </ul>
+    <div class="d-flex align-items-center">
+      <div class="input-group input-group-sm" style="height: 40px">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="搜索..."
+          aria-label="Search"
+          aria-describedby="button-addon2"
+        />
+        <button class="btn btn-sm btn-outline-secondary" type="button" @click="queryPost">搜索</button>
+      </div>
+      <ul v-if="!user.isLogin" class="list-inline mb-0">
+        <li class="list-inline-item" v-if="!isLoginPage">
+          <router-link to="/login" class="btn my-2">登录</router-link>
+        </li>
+        <li class="list-inline-item" v-else>
+          <router-link to="/signup" class="btn my-2">注册</router-link>
+        </li>
+      </ul>
+      <ul v-else class="list-inline mb-0">
+        <li class="list-inline-item">
+          <dropdown :title="`你好 ${user.nickName}`">
+            <dropdown-item
+              ><router-link :to="{ path: '/create', query: { column: route.params.id } }" class="dropdown-item"
+                >新建文章</router-link
+              ></dropdown-item
+            >
+            <dropdown-item
+              ><router-link :to="`/column/${user.column}`" class="dropdown-item">我的专栏</router-link></dropdown-item
+            >
+            <dropdown-item><a href="#" @click="edit" class="dropdown-item">编辑资料</a></dropdown-item>
+            <dropdown-item><a href="#" @click="logout" class="dropdown-item">退出登录</a></dropdown-item>
+          </dropdown>
+        </li>
+      </ul>
+    </div>
   </nav>
 </template>
 
@@ -62,5 +74,9 @@ const logout = () => {
 // 编辑资料
 const edit = () => {
   router.push('personalinformation')
+}
+// 搜索文章
+const queryPost = () => {
+  console.log(11)
 }
 </script>

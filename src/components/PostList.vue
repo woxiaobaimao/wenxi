@@ -1,7 +1,7 @@
 <template>
   <div class="post-list">
-    <article v-for="post in list" :key="post._id" class="card mb-3 shadow-sm">
-      <router-link :to="`/posts/${post._id}/`">
+    <article v-for="post in list" :key="post._id" class="card mb-3 shadow-sm" style="cursor: pointer">
+      <div @click="router.push(`/posts/${post._id}/`)">
         <div class="card-body">
           <h4 class="btn">{{ post.title }}</h4>
           <div class="row my-3 align-items-center">
@@ -10,9 +10,12 @@
             </div>
             <p :class="{ 'col-8': post.image }" class="text-muted">{{ post.excerpt }}</p>
           </div>
-          <span class="text-muted btn">{{ post.createdAt }}</span>
+          <div class="d-flex justify-content-between">
+            <span class="btn">中原</span>
+            <span class="btn">{{ getFormatData(post.createdAt) }}</span>
+          </div>
         </div>
-      </router-link>
+      </div>
     </article>
   </div>
 </template>
@@ -20,8 +23,11 @@
 <script lang="ts" setup>
 import { defineProps, PropType } from 'vue'
 import { PostProps } from '../store'
+import { useRouter } from 'vue-router'
+import { getFormatData } from '@/hooks/useTime'
 
-defineProps({
+const router = useRouter()
+const props = defineProps({
   list: {
     required: true,
     type: Array as PropType<PostProps[]>
