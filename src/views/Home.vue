@@ -3,17 +3,7 @@
     <div class="d-flex" style="gap: 20px">
       <PostList :list="list"></PostList>
       <div>
-        <div class="card mb-3 shadow-sm">
-          <div class="p-2">作者榜</div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-          </ul>
-          <div class="btn">查看更多</div>
-        </div>
+        <Author></Author>
         <div class="card mb-3 shadow-sm" style="width: 18rem">
           <div class="p-2">文章榜</div>
           <ul class="list-group list-group-flush">
@@ -46,6 +36,7 @@ import { useStore } from 'vuex'
 import { GlobalDataProps } from '../store'
 import useLoadMore from '../hooks/useLoadMore'
 import PostList from '../components/PostList.vue'
+import Author from '@/components/Author.vue'
 
 const store = useStore<GlobalDataProps>()
 const total = computed(() => store.state.topics.total)

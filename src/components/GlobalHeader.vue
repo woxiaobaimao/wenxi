@@ -3,11 +3,10 @@
     class="navbar navbar-light fixed-top justify-content-between mb-4"
     style="background-color: white; padding: 0 300px"
   >
-    <div>
-      <router-link class="navbar-brand" to="/">文溪</router-link>
-      <router-link class="navbar-brand fs-6 text-primary" to="/">综合</router-link>
-      <router-link class="navbar-brand fs-6" to="/">前端</router-link>
-      <router-link class="navbar-brand fs-6" to="/">后端</router-link>
+    <div class="d-flex align-items-end">
+      <div style="cursor: pointer" class="navbar-brand" @click="gotoPage('6620c9ed8708337110329559')">文溪</div>
+      <div style="cursor: pointer" class="navbar-brand fs-6" @click="gotoPage('66223c3e8708337110329571')">前端</div>
+      <div style="cursor: pointer" class="navbar-brand fs-6" @click="gotoPage('66223c438708337110329573')">后端</div>
     </div>
     <div class="d-flex align-items-center">
       <div class="input-group input-group-sm" style="height: 40px">
@@ -78,5 +77,9 @@ const edit = () => {
 // 搜索文章
 const queryPost = () => {
   console.log(11)
+}
+const gotoPage = (column: string) => {
+  router.push('/' + column)
+  store.dispatch('fetchPostsAndReplace', column)
 }
 </script>
