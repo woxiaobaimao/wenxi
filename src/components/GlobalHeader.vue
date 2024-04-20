@@ -31,7 +31,7 @@
         <li class="list-inline-item">
           <dropdown :title="`你好 ${user.nickName}`">
             <dropdown-item
-              ><router-link :to="{ path: '/create', query: { column: route.params.id } }" class="dropdown-item"
+              ><router-link :to="{ path: '/create', query: { column: route.query.column } }" class="dropdown-item"
                 >新建文章</router-link
               ></dropdown-item
             >
@@ -79,7 +79,7 @@ const queryPost = () => {
   console.log(11)
 }
 const gotoPage = (column: string) => {
-  router.push('/' + column)
+  router.push('/?column=' + column)
   store.dispatch('fetchPostsAndReplace', column)
 }
 </script>

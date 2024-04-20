@@ -37,15 +37,17 @@ import { GlobalDataProps } from '../store'
 import useLoadMore from '../hooks/useLoadMore'
 import PostList from '../components/PostList.vue'
 import Author from '@/components/Author.vue'
+import { useRoute } from 'vue-router'
 
 const store = useStore<GlobalDataProps>()
 const total = computed(() => store.state.topics.total)
 const page = computed(() => store.state.topics.page)
+const route = useRoute()
+
 onMounted(() => {
-  store.dispatch('fetchPosts', '6620c9ed8708337110329559')
+  store.dispatch('fetchPosts', route.query.column || '6620c9ed8708337110329559')
 })
 const list = computed(() => store.getters.getPosts)
-console.log(list)
 
 const { loadMorePage, isLastPage } = useLoadMore('fetchColumns', total, {
   size: 3,

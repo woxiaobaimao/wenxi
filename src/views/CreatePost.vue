@@ -109,7 +109,7 @@ const onFormSubmit = (result: boolean) => {
   checkEditor()
   if (result && editorStatus.isValid) {
     const { _id } = store.state.user
-    const column = route.query.column || '6620c9ed8708337110329559'
+    const column = route.query.column
     if (column) {
       const newPost: PostProps = {
         title: titleVal.value,
